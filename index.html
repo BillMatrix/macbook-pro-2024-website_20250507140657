@@ -1,0 +1,988 @@
+<!DOCTYPE html>
+<html lang=\"en\">
+<head>
+    <meta charset=\"UTF-8\">
+    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">
+    <title>2024 - Year in Focus</title>
+    <style>
+        :root {
+            --primary-color: #4a6fff;
+            --secondary-color: #ff6b6b;
+            --accent-color: #5cdb95;
+            --dark-color: #2d3436;
+            --light-color: #f9f9f9;
+            --transition: all 0.3s ease;
+            --shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            --border-radius: 8px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--light-color);
+            color: var(--dark-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        header.scrolled {
+            padding: 10px 0;
+            background-color: rgba(74, 111, 255, 0.95);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        .logo span {
+            color: var(--accent-color);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            padding: 8px 15px;
+            border-radius: var(--border-radius);
+        }
+
+        .nav-links a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            position: relative;
+            overflow: hidden;
+            margin-top: 0;
+            padding-top: 80px;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 600px;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease 0.2s forwards;
+            opacity: 0;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            animation: fadeInUp 1s ease 0.4s forwards;
+            opacity: 0;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--accent-color);
+            color: var(--dark-color);
+            text-decoration: none;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid white;
+            color: white;
+        }
+
+        .btn-outline:hover {
+            background-color: white;
+            color: var(--primary-color);
+        }
+
+        .hero-image {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            width: 50%;
+            height: 80%;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 200 200\"><path fill=\"%23FFFFFF\" fill-opacity=\"0.2\" d=\"M44.7,-76.4C58.8,-69.2,71.8,-59.1,79.6,-45.8C87.4,-32.6,90,-16.3,88.7,-0.7C87.5,14.9,82.4,29.8,74.6,43.2C66.9,56.7,56.4,68.7,43.4,75.5C30.4,82.4,15.2,84.1,0.7,83C-13.8,81.9,-27.6,78,-40.9,71.2C-54.2,64.4,-67,54.7,-75.1,41.9C-83.3,29.1,-86.9,14.6,-85.9,0.6C-84.9,-13.4,-79.3,-26.8,-71.5,-39.2C-63.7,-51.6,-53.8,-63,-41.4,-70.2C-29,-77.4,-14.5,-80.4,0.5,-81.2C15.4,-82,30.7,-80.7,44.7,-76.4Z\" transform=\"translate(100 100)\" /></svg>');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            animation: float 6s ease-in-out infinite;
+            z-index: 1;
+        }
+
+        /* Features Section */
+        .section {
+            padding: 100px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .section-title p {
+            color: #777;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 30px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            text-align: center;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+
+        .feature-card h3 {
+            margin-bottom: 15px;
+            color: var(--dark-color);
+        }
+
+        .feature-card p {
+            color: #777;
+        }
+
+        /* Timeline Section */
+        .timeline-section {
+            background-color: var(--dark-color);
+            color: white;
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background-color: var(--accent-color);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -2px;
+        }
+
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+            margin-bottom: 30px;
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: white;
+            border: 4px solid var(--accent-color);
+            border-radius: 50%;
+            top: 15px;
+            z-index: 1;
+        }
+
+        .timeline-item.left {
+            left: 0;
+        }
+
+        .timeline-item.right {
+            left: 50%;
+        }
+
+        .timeline-item.left::after {
+            right: -12px;
+        }
+
+        .timeline-item.right::after {
+            left: -12px;
+        }
+
+        .timeline-content {
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: var(--border-radius);
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .timeline-content:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: scale(1.03);
+        }
+
+        .timeline-date {
+            color: var(--accent-color);
+            font-weight: bold;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        /* Stats Section */
+        .stats-section {
+            background-color: var(--light-color);
+        }
+
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .stat-card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 30px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .stat-title {
+            color: var(--dark-color);
+            font-weight: 500;
+        }
+
+        /* Chart Section */
+        .chart-section {
+            background-color: white;
+        }
+
+        .chart-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 30px;
+        }
+
+        .chart-card {
+            background-color: var(--light-color);
+            border-radius: var(--border-radius);
+            padding: 30px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .chart-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+        }
+
+        .chart-title {
+            margin-bottom: 20px;
+            color: var(--dark-color);
+            text-align: center;
+        }
+
+        .chart-canvas {
+            width: 100%;
+            height: 300px;
+            position: relative;
+        }
+
+        /* Table Section */
+        .table-section {
+            background-color: var(--light-color);
+        }
+
+        .table-container {
+            overflow-x: auto;
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        th {
+            background-color: var(--primary-color);
+            color: white;
+            font-weight: 600;
+        }
+
+        tr:hover {
+            background-color: rgba(74, 111, 255, 0.05);
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background-color: white;
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .contact-info {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+        }
+
+        .contact-info h3 {
+            margin-bottom: 20px;
+        }
+
+        .contact-detail {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .contact-icon {
+            margin-right: 15px;
+            font-size: 1.2rem;
+        }
+
+        .contact-form {
+            background-color: var(--light-color);
+            padding: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+        }
+
+        .form-control:focus {
+            border-color: var(--primary-color);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(74, 111, 255, 0.2);
+        }
+
+        textarea.form-control {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 50px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .footer-column h3 {
+            color: var(--accent-color);
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-color);
+            padding-left: 5px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+
+        .social-link:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1100;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 10% auto;
+            padding: 30px;
+            border-radius: var(--border-radius);
+            max-width: 500px;
+            box-shadow: var(--shadow);
+            animation: fadeInUp 0.5s ease;
+        }
+
+        .close-modal {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close-modal:hover {
+            color: var(--dark-color);
+        }
+
+        .modal-header {
+            margin-bottom: 20px;
+        }
+
+        .modal-body {
+            margin-bottom: 20px;
+        }
+
+        /* Back to top button */
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: var(--primary-color);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            box-shadow: var(--shadow);
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            z-index: 999;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-3px);
+        }
+
+        /* Responsive design */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .hero-image {
+                width: 40%;
+                height: 60%;
+            }
+
+            .timeline::after {
+                left: 31px;
+            }
+
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+
+            .timeline-item.right {
+                left: 0;
+            }
+
+            .timeline-item.left::after, .timeline-item.right::after {
+                left: 19px;
+            }
+
+            .chart-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--primary-color);
+                padding: 20px;
+                box-shadow: var(--shadow);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links li {
+                margin: 10px 0;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .hero {
+                text-align: center;
+                padding-top: 120px;
+            }
+
+            .hero-content {
+                max-width: 100%;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .hero-image {
+                display: none;
+            }
+
+            .section {
+                padding: 60px 0;
+            }
+
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .section-title h2 {
+                font-size: 2rem;
+            }
+
+            .feature-card, .stat-card {
+                padding: 20px;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id=\"header\">
+        <div class=\"container\">
+            <nav>
+                <div class=\"logo\">2024<span>.</span></div>
+                <ul class=\"nav-links\" id=\"nav-links\">
+                    <li><a href=\"#home\">Home</a></li>
+                    <li><a href=\"#features\">Features</a></li>
+                    <li><a href=\"#timeline\">Timeline</a></li>
+                    <li><a href=\"#stats\">Statistics</a></li>
+                    <li><a href=\"#charts\">Charts</a></li>
+                    <li><a href=\"#contact\">Contact</a></li>
+                </ul>
+                <button class=\"hamburger\" id=\"hamburger\">☰</button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class=\"hero\" id=\"home\">
+        <div class=\"container\">
+            <div class=\"hero-content\">
+                <h1>Welcome to 2024</h1>
+                <p>Discover the trends, innovations, and opportunities that define this remarkable year. Join us on a journey through the most exciting developments of 2024.</p>
+                <div class=\"hero-buttons\">
+                    <a href=\"#features\" class=\"btn\">Explore Now</a>
+                    <a href=\"#contact\" class=\"btn btn-outline\">Get in Touch</a>
+                </div>
+            </div>
+            <div class=\"hero-image\"></div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class=\"section\" id=\"features\">
+        <div class=\"container\">
+            <div class=\"section-title\">
+                <h2>Key Features of 2024</h2>
+                <p>Explore the defining characteristics and innovations that make 2024 a pivotal year for technology, society, and global development.</p>
+            </div>
+            <div class=\"features\">
+                <div class=\"feature-card\">
+                    <div class=\"feature-icon\">🚀</div>
+                    <h3>Technological Advancement</h3>
+                    <p>Breakthroughs in AI, quantum computing, and sustainable tech are reshaping our digital landscape.</p>
+                </div>
+                <div class=\"feature-card\">
+                    <div class=\"feature-icon\">🌍</div>
+                    <h3>Global Connectivity</h3>
+                    <p>Enhanced digital infrastructure connecting remote regions and fostering global collaboration.</p>
+                </div>
+                <div class=\"feature-card\">
+                    <div class=\"feature-icon\">💡</div>
+                    <h3>Innovation Ecosystem</h3>
+                    <p>Thriving startup environments and cross-industry partnerships driving creative solutions.</p>
+                </div>
+                <div class=\"feature-card\">
+                    <div class=\"feature-icon\">🌱</div>
+                    <h3>Sustainability Focus</h3>
+                    <p>Renewed commitment to environmental protection and sustainable development practices.</p>
+                </div>
+                <div class=\"feature-card\">
+                    <div class=\"feature-icon\">🔄</div>
+                    <h3>Adaptive Economy</h3>
+                    <p>Resilient economic models embracing change and leveraging digital transformation.</p>
+                </div>
+                <div class=\"feature-card\">
+                    <div class=\"feature-icon\">🤝</div>
+                    <h3>Collaborative Growth</h3>
+                    <p>Partnerships between public and private sectors creating inclusive prosperity.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline Section -->
+    <section class=\"section timeline-section\" id=\"timeline\">
+        <div class=\"container\">
+            <div class=\"section-title\">
+                <h2>2024 Timeline</h2>
+                <p>Key milestones and events shaping the year 2024, from technological breakthroughs to cultural moments.</p>
+            </div>
+            <div class=\"timeline\">
+                <div class=\"timeline-item left\">
+                    <div class=\"timeline-content\">
+                        <span class=\"timeline-date\">January 2024</span>
+                        <h3>Global Tech Summit</h3>
+                        <p>Gathering of industry leaders to discuss emerging technologies and future trends.</p>
+                    </div>
+                </div>
+                <div class=\"timeline-item right\">
+                    <div class=\"timeline-content\">
+                        <span class=\"timeline-date\">March 2024</span>
+                        <h3>Quantum Computing Breakthrough</h3>
+                        <p>Major advancement in quantum computing stability, opening new possibilities for complex problem-solving.</p>
+                    </div>
+                </div>
+                <div class=\"timeline-item left\">
+                    <div class=\"timeline-content\">
+                        <span class=\"timeline-date\">May 2024</span>
+                        <h3>Sustainable Energy Conference</h3>
+                        <p>Introduction of revolutionary renewable energy technologies and global adoption strategies.</p>
+                    </div>
+                </div>
+                <div class=\"timeline-item right\">
+                    <div class=\"timeline-content\">
+                        <span class=\"timeline-date\">August 2024</span>
+                        <h3>International Arts Festival</h3>
+                        <p>Celebration of global cultural expressions and technological integration in creative arts.</p>
+                    </div>
+                </div>
+                <div class=\"timeline-item left\">
+                    <div class=\"timeline-content\">
+                        <span class=\"timeline-date\">October 2024</span>
+                        <h3>Healthcare Innovation Summit</h3>
+                        <p>Showcasing breakthroughs in medical technology and accessible healthcare solutions.</p>
+                    </div>
+                </div>
+                <div class=\"timeline-item right\">
+                    <div class=\"timeline-content\">
+                        <span class=\"timeline-date\">December 2024</span>
+                        <h3>Future Vision Conference</h3>
+                        <p>Looking ahead to 2025 and beyond, setting the agenda for continued progress and innovation.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class=\"section stats-section\" id=\"stats\">
+        <div class=\"container\">
+            <div class=\"section-title\">
+                <h2>2024 in Numbers</h2>
+                <p>Statistical highlights showcasing the impact and growth across various sectors.</p>
+            </div>
+            <div class=\"stats-container\">
+                <div class=\"stat-card\">
+                    <div class=\"stat-number\" data-count=\"65\">0</div>
+                    <div class=\"stat-title\">Countries Adopting Green Policies</div>
+                </div>
+                <div class=\"stat-card\">
+                    <div class=\"stat-number\" data-count=\"42\">0</div>
+                    <div class=\"stat-title\">Million Digital Jobs Created</div>
+                </div>
+                <div class=\"stat-card\">
+                    <div class=\"stat-number\" data-count=\"89\">0</div>
+                    <div class=\"stat-title\">Percent Increase in Remote Work</div>
+                </div>
+                <div class=\"stat-card\">
+                    <div class=\"stat-number\" data-count=\"127\">0</div>
+                    <div class=\"stat-title\">Billion Invested in Clean Energy</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Charts Section -->
+    <section class=\"section chart-section\" id=\"charts\">
+        <div class=\"container\">
+            <div class=\"section-title\">
+                <h2>Data Visualization</h2>
+                <p>Interactive charts and graphs illustrating key trends and data points from 2024.</p>
+            </div>
+            <div class=\"chart-container\">
+                <div class=\"chart-card\">
+                    <h3 class=\"chart-title\">Technology Adoption Rates</h3>
+                    <div class=\"chart-canvas\" id=\"technologyChart\"></div>
+                </div>
+                <div class=\"chart-card\">
+                    <h3 class=\"chart-title\">Economic Growth by Sector</h3>
+                    <div class=\"chart-canvas\" id=\"economicChart\"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Table Section -->
+    <section class=\"section table-section\">
+        <div class=\"container\">
+            <div class=\"section-title\">
+                <h2>Global Innovation Index</h2>
+                <p>Ranking of countries based on their innovation capabilities and results in 2024.</p>
+            </div>
+            <div class=\"table-container\">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Rank</th>
+                            <th>Country</th>
+                            <th>Innovation Score</th>
+                            <th>Change from 2023</th>
+                            <th>Key Strength</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Singapore</td>
+                            <td>92.4</td>
+                            <td>+2</td>
+                            <td>Digital Infrastructure</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Switzerland</td>
+                            <td>91.8</td>
+                            <td>-1</td>
+                            <td>Research & Development</td>
+                        </tr>
